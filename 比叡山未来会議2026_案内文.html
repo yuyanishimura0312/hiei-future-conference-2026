@@ -314,22 +314,27 @@
   @media print {
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
-    /* Page margins: generous left/right for formal document feel */
-    @page { margin: 20mm 30mm 18mm 30mm; }
-    @page :first { margin-top: 12mm; }
+    /* Page margins: minimal @page, control via CSS padding for reliability */
+    @page { margin: 10mm 5mm 10mm 5mm; }
+    @page :first { margin-top: 5mm; }
 
     body {
       background: #fff;
       font-size: 10.5pt;
       line-height: 1.75;
       color: #222;
+      margin: 0;
+      padding: 10px 25mm 0 25mm;
     }
 
     /* --- Hero: elegant print-friendly header --- */
     .hero {
       background: #fff !important;
       color: #111 !important;
-      padding: 28px 0 24px;
+      padding: 20px 0 24px;
+      margin: 0 -25mm;
+      padding-left: 25mm;
+      padding-right: 25mm;
       border-bottom: 2px solid #111;
     }
     .hero::before { display: none; }
@@ -514,7 +519,8 @@
       background: #fff !important;
       color: #333 !important;
       border-top: 1.5pt solid #111;
-      padding: 14px 0 0;
+      margin: 0 -25mm;
+      padding: 14px 25mm 0 25mm;
       font-size: 8.5pt;
       line-height: 1.8;
       page-break-inside: avoid;
