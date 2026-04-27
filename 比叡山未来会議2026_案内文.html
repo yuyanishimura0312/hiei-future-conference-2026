@@ -313,86 +313,229 @@
   /* Print styles */
   @media print {
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    body { background: #fff; font-size: 11pt; line-height: 1.7; }
 
-    /* Hero: print-friendly with border instead of dark bg */
+    /* Page margins: generous left/right for formal document feel */
+    @page { margin: 20mm 22mm 18mm 22mm; }
+    @page :first { margin-top: 12mm; }
+
+    body {
+      background: #fff;
+      font-size: 10.5pt;
+      line-height: 1.75;
+      color: #222;
+    }
+
+    /* --- Hero: elegant print-friendly header --- */
     .hero {
       background: #fff !important;
       color: #111 !important;
-      padding: 40px 0 32px;
-      border-bottom: 3px solid #111;
+      padding: 28px 0 24px;
+      border-bottom: 2px solid #111;
     }
     .hero::before { display: none; }
-    .hero-year { color: #666 !important; opacity: 1; font-size: 10pt; }
-    .hero h1 { font-size: 24pt; color: #111; }
-    .hero-subtitle { color: #333 !important; opacity: 1; font-size: 13pt; }
-    .hero-divider { background: #999; }
-    .hero-date { color: #555 !important; opacity: 1; font-size: 10pt; }
+    .hero-inner { max-width: 100%; }
+    .hero-year {
+      color: #555 !important;
+      opacity: 1;
+      font-size: 8.5pt;
+      letter-spacing: 4px;
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: 22pt;
+      color: #111;
+      letter-spacing: 5px;
+      margin-bottom: 16px;
+    }
+    .hero-subtitle {
+      color: #333 !important;
+      opacity: 1;
+      font-size: 12pt;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+    .hero-divider {
+      background: #888;
+      width: 32px;
+      margin: 16px auto;
+    }
+    .hero-date {
+      color: #444 !important;
+      opacity: 1;
+      font-size: 9pt;
+      letter-spacing: 1px;
+    }
 
-    /* Layout */
-    .container { max-width: 100%; padding: 0; }
-    section { padding: 24px 0; border-bottom: 1px solid #ccc; }
-    .intro { padding: 28px 0; }
-    .intro p { font-size: 10.5pt; line-height: 1.8; margin-bottom: 10px; }
+    /* --- Layout: proper content width with breathing room --- */
+    .container {
+      max-width: 100%;
+      padding: 0;
+    }
 
-    /* Headings */
-    h2 { font-size: 14pt; margin-bottom: 16px; padding-bottom: 6px; border-bottom-width: 1.5px; page-break-after: avoid; }
-    h3 { font-size: 11pt; margin: 16px 0 8px; page-break-after: avoid; }
+    /* --- Intro section --- */
+    .intro {
+      padding: 20px 0 16px;
+      border-bottom: 1px solid #ccc;
+    }
+    .intro p {
+      font-size: 10pt;
+      line-height: 1.85;
+      margin-bottom: 8px;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+    .intro .org-info {
+      margin-top: 20px;
+      font-size: 9.5pt;
+      line-height: 1.8;
+    }
 
-    /* Tables */
-    .info-table th { font-size: 10pt; padding: 8px 12px 8px 0; }
-    .info-table td { font-size: 10pt; padding: 8px 0; }
+    /* --- Section spacing --- */
+    section {
+      padding: 18px 0 14px;
+      border-bottom: 1px solid #d0d0d0;
+    }
 
-    /* Program */
+    /* --- Headings: clear hierarchy --- */
+    h2 {
+      font-size: 13pt;
+      font-weight: 700;
+      margin-bottom: 14px;
+      padding-bottom: 5px;
+      border-bottom: 1.5pt solid #111;
+      page-break-after: avoid;
+      letter-spacing: 1px;
+    }
+    h3 {
+      font-size: 10.5pt;
+      font-weight: 600;
+      margin: 14px 0 6px;
+      page-break-after: avoid;
+    }
+
+    /* --- Body text --- */
+    p {
+      font-size: 9.5pt;
+      line-height: 1.75;
+      margin-bottom: 6px;
+    }
+
+    /* --- Info tables --- */
+    .info-table th {
+      font-size: 9.5pt;
+      padding: 7px 14px 7px 0;
+      width: 80pt;
+      vertical-align: top;
+      font-weight: 600;
+      color: #111;
+      border-bottom: 1px solid #d8d8d8;
+    }
+    .info-table td {
+      font-size: 9.5pt;
+      padding: 7px 0;
+      line-height: 1.7;
+      border-bottom: 1px solid #d8d8d8;
+    }
+
+    /* --- Program block --- */
     .program-block {
       background: #fff;
-      border: 1px solid #ccc;
+      border: 1pt solid #bbb;
+      border-radius: 0;
       box-shadow: none;
-      padding: 16px 20px;
+      padding: 12px 16px;
+      margin: 10px 0;
+    }
+    .program-item {
+      padding: 6px 0;
+      border-bottom: 0.5pt solid #ddd;
+    }
+    .program-item:last-child { border-bottom: none; }
+    .program-time {
+      font-size: 8.5pt;
+      min-width: 80px;
+      font-weight: 500;
+      color: #222;
+      padding-top: 1px;
+    }
+    .program-content { font-size: 9.5pt; }
+    .program-title { font-size: 9.5pt; font-weight: 600; }
+    .program-speaker { font-size: 8.5pt; line-height: 1.6; }
+    .program-note { font-size: 8.5pt; color: #444; }
+    .session-theme { font-size: 10pt; font-weight: 700; }
+
+    /* --- Profiles: clean cards --- */
+    .profile-section { padding: 18px 0 10px; }
+    .profile-card {
+      padding: 12px 0 10px;
+      border-bottom: 0.5pt solid #d0d0d0;
+      page-break-inside: avoid;
+    }
+    .profile-card:last-child { border-bottom: none; }
+    .profile-name {
+      font-size: 10.5pt;
+      font-weight: 700;
+      margin-bottom: 1px;
+    }
+    .profile-title {
+      font-size: 8.5pt;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .profile-bio {
+      font-size: 8.5pt;
+      line-height: 1.65;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+
+    /* --- Reference box --- */
+    .reference-box {
+      background: #f7f7f7;
+      border: 0.5pt solid #ccc;
+      border-radius: 0;
+      padding: 10px 14px;
       margin: 12px 0;
     }
-    .program-item { padding: 8px 0; }
-    .program-time { font-size: 9pt; min-width: 90px; }
-    .program-content { font-size: 10pt; }
-    .program-speaker { font-size: 9pt; }
-    .program-note { font-size: 9pt; }
-    .session-theme { font-size: 11pt; }
+    .reference-box p { font-size: 8.5pt; line-height: 1.65; }
+    .reference-box a { color: #111; font-size: 8.5pt; }
+    .reference-box a::after {
+      content: ' (' attr(href) ')';
+      font-size: 7.5pt;
+      color: #777;
+    }
 
-    /* Profiles */
-    .profile-section { padding: 24px 0; }
-    .profile-card { padding: 14px 0; page-break-inside: avoid; }
-    .profile-name { font-size: 11pt; }
-    .profile-title { font-size: 9pt; }
-    .profile-bio { font-size: 9pt; line-height: 1.7; }
+    /* --- Notes --- */
+    .note { font-size: 8.5pt; color: #555; }
+    .note-list li { font-size: 8.5pt; line-height: 1.7; }
 
-    /* Reference */
-    .reference-box { background: #f8f8f8; padding: 12px 16px; }
-    .reference-box p { font-size: 9pt; }
-    .reference-box a { color: #111; font-size: 9pt; }
-    /* Print URL after link */
-    .reference-box a::after { content: ' (' attr(href) ')'; font-size: 8pt; color: #888; }
-
-    /* Notes */
-    p { font-size: 10pt; line-height: 1.7; margin-bottom: 8px; }
-    .note { font-size: 9pt; }
-    .note-list li { font-size: 9pt; }
-    .org-info { font-size: 10pt; }
-
-    /* Footer: print-friendly */
+    /* --- Footer: formal, minimal --- */
     .footer {
       background: #fff !important;
       color: #333 !important;
-      border-top: 2px solid #111;
-      padding: 20px 0;
-      font-size: 9pt;
+      border-top: 1.5pt solid #111;
+      padding: 14px 0 0;
+      font-size: 8.5pt;
+      line-height: 1.8;
+      page-break-inside: avoid;
     }
     .footer strong { color: #111 !important; }
 
-    /* Hide non-print elements */
+    /* --- Hide non-print elements --- */
     .pdf-download { display: none !important; }
 
-    /* Page margins */
-    @page { margin: 18mm 15mm; }
+    /* --- Orphan/Widow control --- */
+    p, .profile-bio, .program-speaker {
+      orphans: 3;
+      widows: 3;
+    }
+
+    /* --- Prevent awkward page breaks --- */
+    .program-block { page-break-inside: avoid; }
+    .info-table { page-break-inside: avoid; }
+    .reference-box { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+    .intro { page-break-inside: avoid; }
   }
 
   /* Responsive */
